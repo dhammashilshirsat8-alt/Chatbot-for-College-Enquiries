@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Explore Sitabai Arts, Commerce & Science College in Akola: departments, admissions, campus information, and student support." />
+  <meta name="theme-color" content="#f7f8fc" />
+  <title>Sitabai College, Akola — Student Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Sitabai College home">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="assets/sitabai-college-logo.png" alt="" />
+        </span>
+        <span class="brand-name">Sitabai College<span class="brand-location">Akola · Maharashtra</span></span>
+      </a>
+
+      <button class="new-chat-button" id="newChatButton" type="button">
+        <span class="plus-icon" aria-hidden="true">+</span>
+        New conversation
+        <span class="shortcut">⌘ K</span>
+      </button>
+
+      <nav class="sidebar-navigation" aria-label="College information">
+        <span class="sidebar-nav-label">COLLEGE</span>
+        <button class="sidebar-nav-item active" type="button" data-view="home">
+          <span class="sidebar-nav-icon">⌂</span>Home dashboard
+        </button>
+        <button class="sidebar-nav-item" type="button" data-view="about">
+          <span class="sidebar-nav-icon">▧</span>About college
+        </button>
+        <button class="sidebar-nav-item" type="button" data-view="courses">
+          <span class="sidebar-nav-icon">▤</span>Courses
+        </button>
+        <button class="sidebar-nav-item" type="button" data-view="admissions">
+          <span class="sidebar-nav-icon">↗</span>Admissions
+        </button>
+        <button class="sidebar-nav-item" type="button" data-view="fees">
+          <span class="sidebar-nav-icon">₹</span>Fees & aid
+        </button>
+        <button class="sidebar-nav-item" type="button" data-view="campus">
+          <span class="sidebar-nav-icon">✳</span>Campus life
+        </button>
+        <button class="sidebar-nav-item" type="button" data-view="assistant">
+          <span class="sidebar-nav-icon">✦</span>Ask AI assistant
+        </button>
+      </nav>
+
+      <section class="sidebar-section history-section">
+        <div class="section-heading">
+          <span>RECENT CHATS</span>
+          <span class="section-count" id="historyCount">0</span>
+        </div>
+        <div class="history-list" id="historyList">
+          <p class="empty-history">Your conversations will appear here.</p>
+        </div>
+      </section>
+
+      <section class="sidebar-section faq-section">
+        <div class="section-heading">
+          <span>EXPLORE FAQs</span>
+          <span class="sparkle" aria-hidden="true">✳</span>
+        </div>
+        <label class="search-box">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="8.8" cy="8.8" r="5.8" stroke="currentColor" stroke-width="1.6" />
+            <path d="m13.2 13.2 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+          <input id="faqSearch" type="search" placeholder="Search questions..." autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <div class="faq-list" id="faqList"></div>
+      </section>
+
+      <div class="sidebar-footer">
+        <div class="status-dot" id="connectionDot" aria-hidden="true"></div>
+        <span id="connectionStatus">Local demo · connect Supabase for cloud sync</span>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <button class="mobile-menu-button icon-button" id="mobileMenuButton" type="button" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <div class="page-label">
+          <span class="page-label-dot"></span>
+          <span>SITABAI COLLEGE · AKOLA</span>
+        </div>
+        <div class="topbar-actions">
+          <span class="topbar-caption">Need a hand?</span>
+          <button class="admin-button" id="adminButton" type="button">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M10 10a3.1 3.1 0 1 0 0-6.2 3.1 3.1 0 0 0 0 6.2ZM4.4 16.4c.5-2.5 2.7-4.1 5.6-4.1s5.1 1.6 5.6 4.1"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+            Admin
+          </button>
+        </div>
+      </header>
+
+      <section class="info-view" id="infoView" hidden aria-live="polite"></section>
+
+      <section class="chat-layout">
+        <div class="chat-content" id="chatContent">
+          <div class="welcome-screen" id="welcomeScreen">
+            <div class="welcome-orb" aria-hidden="true">
+              <span class="orb-sparkle sparkle-one">✦</span>
+              <span class="orb-sparkle sparkle-two">✧</span>
+              <svg viewBox="0 0 72 72" fill="none">
+                <path d="M11 28.5 36 16l25 12.5L36 41 11 28.5Z" fill="currentColor" />
+                <path d="M21.5 35v12.4c7.2 5.8 21.8 5.8 29 0V35L36 42.5 21.5 35Z" fill="currentColor" opacity=".74" />
+                <path d="M61 29v17" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                <circle cx="61" cy="49.5" r="2.5" fill="currentColor" />
+              </svg>
+            </div>
+            <span class="eyebrow">YOUR CAMPUS, MADE SIMPLE</span>
+            <h1>Hey there, <span>future grad.</span></h1>
+            <p class="welcome-copy">Big plans start with good questions. Ask me anything about campus, courses,
+              admissions, and more.</p>
+
+            <div class="suggestion-grid">
+              <button class="suggestion-card" type="button" data-view="admissions">
+                <span class="suggestion-icon icon-violet">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 4.8h9.7L19 9v10.2H5V4.8Z" stroke="currentColor" stroke-width="1.6"
+                      stroke-linejoin="round" />
+                    <path d="M14 5v4h4M8 13h8M8 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
+                </span>
+                <span><strong>Admissions</strong><small>How do I apply?</small></span>
+                <span class="card-arrow" aria-hidden="true">↗</span>
+              </button>
+              <button class="suggestion-card" type="button" data-view="courses">
+                <span class="suggestion-icon icon-peach">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 8.2 12 4l8 4.2-8 4.2-8-4.2ZM6.5 10v5.7c3.1 2.7 8 2.7 11 0V10" stroke="currentColor"
+                      stroke-width="1.6" stroke-linejoin="round" />
+                    <path d="M20 8v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
+                </span>
+                <span><strong>Courses</strong><small>Explore programs</small></span>
+                <span class="card-arrow" aria-hidden="true">↗</span>
+              </button>
+              <button class="suggestion-card" type="button" data-view="fees">
+                <span class="suggestion-icon icon-green">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6" />
+                    <path
+                      d="M14.8 9.2c-.5-.7-1.4-1.1-2.5-1.1-1.4 0-2.3.7-2.3 1.7 0 2.8 4.8 1.1 4.8 4 0 1.1-1 1.9-2.7 1.9-1.2 0-2.2-.4-2.9-1.3M12 6.8v10.4"
+                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                  </svg>
+                </span>
+                <span><strong>Fees & aid</strong><small>Tuition and scholarships</small></span>
+                <span class="card-arrow" aria-hidden="true">↗</span>
+              </button>
+              <button class="suggestion-card" type="button" data-view="campus">
+                <span class="suggestion-icon icon-blue">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6" />
+                    <path
+                      d="M3.8 18c.5-2.8 2.3-4.2 5.2-4.2s4.7 1.4 5.2 4.2M16 5.4a3 3 0 0 1 0 5.8M16.3 14c2.2.3 3.5 1.6 3.9 4"
+                      stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
+                </span>
+                <span><strong>Campus life</strong><small>Clubs, housing & more</small></span>
+                <span class="card-arrow" aria-hidden="true">↗</span>
+              </button>
+            </div>
+            <div class="welcome-note"><span aria-hidden="true">✳</span> Your friendly guide to everything campus.</div>
+          </div>
+
+          <div class="conversation" id="conversation" hidden>
+            <div class="conversation-heading">
+              <span class="conversation-kicker">YOUR CONVERSATION</span>
+              <h2 id="conversationTitle">Let's figure it out.</h2>
+            </div>
+            <div class="message-list" id="messageList" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="composer-wrap">
+          <form class="composer" id="chatForm">
+            <label class="sr-only" for="messageInput">Ask a question</label>
+            <textarea id="messageInput" rows="1" placeholder="Ask me anything about college..." maxlength="500"
+              required></textarea>
+            <div class="composer-bottom">
+              <span class="composer-hint"><kbd>↵</kbd> to send <span class="hint-divider">·</span> <kbd>⇧ ↵</kbd> for a
+                new line</span>
+              <div class="composer-controls">
+                <span class="character-count" id="characterCount">0 / 500</span>
+                <button class="voice-button" id="voiceButton" type="button" aria-label="Start voice conversation"
+                  aria-pressed="false" title="Talk to the AI by voice">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <rect x="7" y="2.5" width="6" height="10" rx="3" stroke="currentColor" stroke-width="1.6" />
+                    <path d="M4.5 9.5a5.5 5.5 0 0 0 11 0M10 15v2.5m-3 0h6" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" />
+                  </svg>
+                </button>
+                <button class="send-button" id="sendButton" type="submit" aria-label="Send message" disabled>
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M10 15V5M6 9l4-4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </form>
+          <p class="voice-status" id="voiceStatus" role="status" aria-live="polite"></p>
+          <p class="privacy-note">Voice chat streams microphone audio to OpenAI. Avoid sharing sensitive personal
+            information.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="adminModal" hidden>
+    <section class="admin-dialog" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+      <button class="modal-close icon-button" id="closeAdminButton" type="button"
+        aria-label="Close admin panel">×</button>
+      <div class="login-view" id="loginView">
+        <div class="modal-icon" aria-hidden="true">✦</div>
+        <span class="eyebrow">SITABAI COLLEGE FOR STAFF</span>
+        <h2 id="adminTitle">Welcome back.</h2>
+        <p class="modal-copy">Sign in to keep campus answers up to date.</p>
+        <form class="login-form" id="loginForm">
+          <label for="adminEmail">Email address</label>
+          <input id="adminEmail" type="email" value="admin@campus.edu" required autocomplete="username" />
+          <label for="adminPassword">Password</label>
+          <input id="adminPassword" type="password" placeholder="Enter your password" required
+            autocomplete="current-password" />
+          <p class="form-error" id="loginError" role="alert" hidden></p>
+          <button class="primary-button" type="submit">Sign in to dashboard <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="demo-hint" id="demoLoginHint">Demo login: <strong>admin@campus.edu</strong> /
+          <strong>Campus123</strong>
+        </p>
+      </div>
+
+      <div class="dashboard-view" id="dashboardView" hidden>
+        <div class="dashboard-heading">
+          <div>
+            <span class="eyebrow">SITABAI COLLEGE FOR STAFF</span>
+            <h2 id="dashboardTitle">FAQ library</h2>
+            <p class="modal-copy">Keep every student question answered.</p>
+          </div>
+          <button class="text-button" id="logoutButton" type="button">Sign out</button>
+        </div>
+        <div class="dashboard-stats">
+          <div class="stat-card"><span class="stat-number" id="faqStat">0</span><span>Published FAQs</span></div>
+          <div class="stat-card"><span class="stat-number" id="chatStat">0</span><span>Saved conversations</span></div>
+        </div>
+        <form class="faq-form" id="faqForm">
+          <div class="form-heading">
+            <h3 id="faqFormTitle">Add an answer</h3>
+            <button class="text-button" id="cancelEditButton" type="button" hidden>Cancel edit</button>
+          </div>
+          <input id="faqId" type="hidden" />
+          <label for="faqQuestion">Question</label>
+          <input id="faqQuestion" type="text" maxlength="140" placeholder="e.g. When does the semester start?"
+            required />
+          <label for="faqAnswer">Answer</label>
+          <textarea id="faqAnswer" rows="3" maxlength="800" placeholder="Write a clear, helpful answer..."
+            required></textarea>
+          <div class="form-row">
+            <div>
+              <label for="faqCategory">Category</label>
+              <select id="faqCategory">
+                <option>Admissions</option>
+                <option>Academics</option>
+                <option>Fees & Aid</option>
+                <option>Campus Life</option>
+                <option>Student Services</option>
+              </select>
+            </div>
+            <div>
+              <label for="faqKeywords">Keywords <span>(comma separated)</span></label>
+              <input id="faqKeywords" type="text" maxlength="180" placeholder="semester, dates, calendar" />
+            </div>
+          </div>
+          <button class="primary-button" id="saveFaqButton" type="submit">Add to FAQ library <span
+              aria-hidden="true">→</span></button>
+          <p class="form-error" id="faqError" role="alert" hidden></p>
+        </form>
+        <div class="manage-faqs">
+          <div class="manage-heading">
+            <h3>Existing answers</h3><span id="manageFaqCount">0 answers</span>
+          </div>
+          <div class="admin-faq-list" id="adminFaqList"></div>
+        </div>
+        <p class="storage-note" id="storageNote">Demo project: changes are saved in this browser only.</p>
+      </div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
